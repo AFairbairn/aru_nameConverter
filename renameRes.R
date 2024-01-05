@@ -66,6 +66,9 @@ renameRes <- function(path, copy_path=NULL, recursive=T, input="auto", output, u
     file = tools::file_path_sans_ext(basename(files[1]))
     matches <- sapply(sapply(patterns, function(x) x$regex), grepl, x = file)
     pattern <- names(which(matches))
+    if (length(pattern) == 0) {
+      stop("No matching pattern found")
+    }
     #matched_pattern <- patterns[matched_pattern_name]
     print(paste0("Detected ", pattern, " file naming pattern."))
   } else {
